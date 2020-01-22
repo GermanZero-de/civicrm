@@ -1,3 +1,5 @@
+# Whole file copied from https://github.com/docker-library/drupal/blob/1ec9ec0be11ef631014202064adcc402b834717d/7/fpm/Dockerfile
+# Adaptions made to fit UID
 # from https://www.drupal.org/docs/8/system-requirements/drupal-8-php-requirements
 FROM php:7.3-fpm-stretch
 # TODO switch to buster once https://github.com/docker-library/php/issues/865 is resolved in a clean way (either in the PHP image or in PHP itself)
@@ -62,6 +64,8 @@ RUN { \
 WORKDIR /var/www/html
 
 COPY --chown=www-data:www-data entrypoint.sh /usr/local/bin/
+
+USER 1001
 
 ENTRYPOINT entrypoint.sh
 

@@ -35,6 +35,8 @@ if [[ ! -e /var/www/html/index.php ]]; then
     cd /var/www/html/
     chmod ug+w sites/default
     chown -R www-data:www-data sites modules themes
+    # config file
+    cp ./sites/default/default.settings.php ./sites/default/settings.php
 fi
 # start php-fpm
 php-fpm
