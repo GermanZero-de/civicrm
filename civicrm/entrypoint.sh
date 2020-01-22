@@ -34,7 +34,7 @@ if [[ ! -e /var/www/html/index.php ]]; then
     # permissions
     cd /var/www/html/
     chmod ug+w sites/default
-    chown -R www-data:www-data sites modules themes
+    chown -R 1001:1000 sites modules themes
     # config file
     cp ./sites/default/default.settings.php ./sites/default/settings.php
 fi

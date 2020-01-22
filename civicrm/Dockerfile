@@ -65,7 +65,7 @@ WORKDIR /var/www/html
 
 COPY --chown=www-data:www-data entrypoint.sh /usr/local/bin/
 
-USER 1001
+USER 1001:1000
 
 ENTRYPOINT entrypoint.sh
 
