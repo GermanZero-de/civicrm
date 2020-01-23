@@ -4,8 +4,8 @@ services:
   nginx:
     image: germanzero/nginx
     volumes:
-      - /var/volumes/civicrm/nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - /var/volumes/civicrm/drupal:/var/www/html/
+      - /var/apps/civicrm/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - /var/apps/civicrm/drupal:/var/www/html/
     networks:
       - civicrm
       - bastion
@@ -17,8 +17,8 @@ services:
   php:
     image: germanzero/civicrm
     volumes:
-      - /var/volumes/civicrm/drupal:/var/www/html/
-      - /var/volumes/civicrm/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - /var/apps/civicrm/drupal:/var/www/html/
+      - /var/apps/civicrm/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
     networks:
       - civicrm
     deploy:
@@ -27,14 +27,14 @@ services:
           - node.labels.name == germanzero-2
 
   db:
-    image: mariadb
+    image: mariadb:10.4
     environment:
       - MYSQL_ROOT_PASSWORD=rootpassword
       - MYSQL_DATABASE=database
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
     volumes:
-      - /var/volumes/civicrm/mysql:/var/lib/mysql
+      - /var/apps/civicrm/mysql:/var/lib/mysql
     networks:
       - civicrm
     deploy:
@@ -47,10 +47,9 @@ services:
     environment:
       - NODE_ENV=production
       - BASEURL=https://germanzero.org
-      - APIURL=https://api.germanzero.de
       - LOGLEVEL=debug
     volumes:
-      - /var/volumes/civicrm/api:/app/store
+      - /var/apps/civicrm/api:/app/store
     networks:
       - bastion
 
