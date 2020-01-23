@@ -63,7 +63,9 @@ RUN { \
 
 WORKDIR /var/www/html
 
-COPY --chown=www-data:www-data entrypoint.sh /usr/local/bin/
+RUN chown -R 1000:1001 /var/www/html
+
+COPY --chown=1000:1001 entrypoint.sh /usr/local/bin/
 
 USER 1001:1000
 
