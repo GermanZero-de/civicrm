@@ -10,7 +10,7 @@ set -o nounset    # Exposes unset variables
 # https://www.drupal.org/node/3060/release
 DRUPAL_VERSION=7.69
 DRUPAL_MD5=292290a2fb1f5fc919291dc3949cdf7c
-CIVICRM_VERSION=5.21.1
+CIVICRM_VERSION=5.20.0
 
 set -eux;
 
