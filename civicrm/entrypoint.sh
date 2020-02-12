@@ -31,6 +31,18 @@ if [[ ! -e /var/www/html/index.php ]]; then
     tar -xzf civicrm-l10n.tar.gz civicrm/l10n --strip-components 1
     mv l10n/de_DE /var/www/html/sites/all/modules/civicrm/l10n/
     rm civicrm-l10n.tar.gz
+    # download smtp module
+    curl https://ftp.drupal.org/files/projects/smtp-7.x-1.7.tar.gz | tar -xvz --directory=/var/www/html/sites/all/modules/
+    # download bootstrap theme
+    curl https://ftp.drupal.org/files/projects/bootstrap-7.x-3.26.tar.gz | tar -xvz --directory=/var/www/html/sites/all/themes/
+    # download civimobileapi
+    CIVIMOBILEAPI=4.2.1
+    curl --location https://github.com/agiliway/com.agiliway.civimobileapi/archive/v${CIVIMOBILEAPI}.tar.gz | tar -xvz --directory=/var/www/html/sites/default/files/civicrm/ext/
+    mv /var/www/html/sites/default/files/civicrm/ext/com.agiliway.civimobileapi-${CIVIMOBILEAPI} /var/www/html/sites/default/files/civicrm/ext/com.agiliway.civimobileapi
+    # download apikey
+    APIKEY=1.0
+    curl --location https://github.com/cividesk/com.cividesk.apikey/archive/v${APIKEY}.tar.gz | tar -xvz --directory=/var/www/html/sites/default/files/civicrm/ext/
+    mv /var/www/html/sites/default/files/civicrm/ext/com.cividesk.apikey-${APIKEY} /var/www/html/sites/default/files/civicrm/ext/com.cividesk.apikey
     # permissions
     cd /var/www/html/
     chmod ug+w sites/default
